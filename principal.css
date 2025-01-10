@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  text-decoration: none;
+  list-style: none;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin: 16px 0; 
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #484d50;
+  color: #fff;
+
+}
+header {
+  background-color: #3c3c3c;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+footer {
+background-color: #3c3c3c;
+padding: 1rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.2rem;
+  font-weight: 100;
+}
+p {
+  font-size: 1rem;
+}
+.caixa {
+  border: 1px solid #fff;
+  /*width: clamp(350px, 25vw, 400px);
+  height: clamp(20px, 4vh, 60px);*/
+}
+.bola {
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid ghostwhite;
+}
