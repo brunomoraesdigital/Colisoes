@@ -25,9 +25,9 @@ Veja o projeto rodando: [Colisões](https://brunomoraesdigital.github.io/Colisoe
 - `script.js` - Lógica para movimentação e detecção de colisões.
 
 ## 🌟 Melhorias Futuras
-[] Adicionar sons para as colisões.
-[] Criar mais objetos interativos.
-[] Implementar configurações de velocidade e dificuldade.
+- [ ] Adicionar sons para as colisões.
+- [ ] Criar mais objetos interativos.
+- [ ] Implementar configurações de velocidade e dificuldade.
 
 ## 🤝 Contribuições
 Este projeto foi feito para fins de aprendizado, mas se você tem sugestões ou melhorias, sinta-se à vontade para abrir issues ou enviar pull requests.
