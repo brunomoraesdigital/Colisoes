@@ -1,6 +1,9 @@
 const elementoCaixa = document.getElementById('caixa');
 const elementoBola = document.getElementById('bola');
 
+const elementoHTML = document.getElementsByTagName('html')[0];
+
+
 let larguraDaTela = window.innerWidth;
 let alturaDaTela = window.innerHeight;
 
@@ -16,17 +19,28 @@ let velocidadeBolaX;
 let velocidadeBolaY;
 
 function dimensionar() {
+  
+  larguraDaTela = window.innerWidth;
+  alturaDaTela = window.innerHeight;
 
   larguraDaCaixa = Math.floor(`${(larguraDaTela * 90) / 100}`);
-  alturaDaCaixa = Math.floor(`${(alturaDaTela * 50) / 100}`);
+  alturaDaCaixa = Math.floor(`${(larguraDaTela * 50) / 100}`);
 
   comprimentoDaBola = Math.floor(`${(larguraDaTela * 2.4) / 100}`);
 
   if (larguraDaTela > alturaDaTela) {
-    larguraDaCaixa = Math.floor(`${(larguraDaTela * 40) / 100}`);
-    alturaDaCaixa = Math.floor(`${(alturaDaTela * 20) / 100}`);
+    larguraDaCaixa = Math.floor(`${(larguraDaTela * 45) / 100}`);
+    alturaDaCaixa = Math.floor(`${(larguraDaTela * 25) / 100}`);
 
     comprimentoDaBola = Math.floor(`${(larguraDaTela * 1) / 100}`);
+  }
+}
+
+function tamanhoDaFonte () {
+  if (larguraDaTela > alturaDaTela) {
+    elementoHTML.style.fontSize = `${(16*alturaDaTela)/768}px`;
+  } else {
+    elementoHTML.style.fontSize = 16+'px';
   }
 }
 
@@ -83,9 +97,17 @@ function inicializar() {
   posicionar();
   movimentar();
   depurar();
-
-  setInterval(atualizar, 16);
-
 }
 
+function atualizarDimensoes() {
+  dimensionar();
+  estilizar();
+  tamanhoDaFonte();
+  posicionar();
+}
+
+window.addEventListener('resize', atualizarDimensoes);
+
 inicializar();
+
+setInterval(atualizar, 16);
