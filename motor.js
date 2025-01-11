@@ -1,49 +1,91 @@
 const elementoCaixa = document.getElementById('caixa');
 const elementoBola = document.getElementById('bola');
-let htmlElemento = document.getElementsByTagName('html')[0];
 
-let carregamentoInicial = true; // Variável de controle
+let larguraDaTela = window.innerWidth;
+let alturaDaTela = window.innerHeight;
 
-function atualizarTamanhos() {
-  let larguraTela = window.innerWidth;
-  let alturaTela = window.innerHeight;
+let larguraDaCaixa;
+let alturaDaCaixa;
 
-  let tamanhoDaFonte = `${Math.floor((16 * alturaTela) / 776)}`;
+let comprimentoDaBola;
 
-  let larguraElementoCaixa, alturaElementoCaixa, larguraElementoBola, alturaElementoBola;
+let posicaoBolaX;
+let posicaoBolaY;
 
-  if (larguraTela < alturaTela) {
-    larguraElementoCaixa = `${Math.floor((larguraTela * 90) / 100)}`;
-    alturaElementoCaixa = `${Math.floor((larguraTela * 50) / 100)}`;
+let velocidadeBolaX;
+let velocidadeBolaY;
 
-    larguraElementoBola = `${Math.floor((larguraTela * 2.4) / 100)}`;
-    alturaElementoBola = `${Math.floor((larguraTela * 2.4) / 100)}`;
-  } else {
-    larguraElementoCaixa = `${Math.floor((larguraTela * 40) / 100)}`;
-    alturaElementoCaixa = `${Math.floor((larguraTela * 20) / 100)}`;
+function dimensionar() {
 
-    larguraElementoBola = `${Math.floor((larguraTela * 1) / 100)}`;
-    alturaElementoBola = `${Math.floor((larguraTela * 1) / 100)}`;
+  larguraDaCaixa = Math.floor(`${(larguraDaTela * 90) / 100}`);
+  alturaDaCaixa = Math.floor(`${(alturaDaTela * 50) / 100}`);
+
+  comprimentoDaBola = Math.floor(`${(larguraDaTela * 2.4) / 100}`);
+
+  if (larguraDaTela > alturaDaTela) {
+    larguraDaCaixa = Math.floor(`${(larguraDaTela * 40) / 100}`);
+    alturaDaCaixa = Math.floor(`${(alturaDaTela * 20) / 100}`);
+
+    comprimentoDaBola = Math.floor(`${(larguraDaTela * 1) / 100}`);
   }
-
-  elementoCaixa.style.width = `${larguraElementoCaixa}px`;
-  elementoCaixa.style.height = `${alturaElementoCaixa}px`;
-
-  elementoBola.style.width = `${larguraElementoBola}px`;
-  elementoBola.style.height = `${alturaElementoBola}px`;
-
-  htmlElemento.style.fontSize = `${tamanhoDaFonte}px`;
-
-  // depuração 
-  if (!carregamentoInicial) {
-    console.log(`Largura da tela: ${larguraTela} px \nAltura da tela: ${alturaTela} px`);
-    console.log('Largura da caixa: ' + larguraElementoCaixa + ' px' + '\nAltura da caixa: ' + alturaElementoCaixa + ' px');
-    console.log('Largura da bola: ' + larguraElementoBola + ' px' + '\nAltura da bola: ' + alturaElementoBola + ' px');
-    console.log('Tamanho da fonte: ' + tamanhoDaFonte + 'px');
-  }
-
-  carregamentoInicial = false; // Atualiza o estado
 }
 
-atualizarTamanhos();
-window.addEventListener('resize', atualizarTamanhos);
+function estilizar() {
+  elementoCaixa.style.width = `${larguraDaCaixa}px`;
+  elementoCaixa.style.height = `${alturaDaCaixa}px`;
+
+  elementoBola.style.width = `${comprimentoDaBola}px`;
+  elementoBola.style.height = `${comprimentoDaBola}px`;
+}
+
+function posicionar() {
+  posicaoBolaX = larguraDaCaixa / 2;
+  posicaoBolaY = alturaDaCaixa / 2;
+
+  elementoBola.style.top = `${posicaoBolaY}px`;
+  elementoBola.style.left = `${posicaoBolaX}px`;
+}
+
+function movimentar() {
+  velocidadeBolaX = 2;
+  velocidadeBolaY = 2;
+
+}
+function atualizar() {
+  posicaoBolaX += velocidadeBolaX;
+  posicaoBolaY += velocidadeBolaY;
+  
+  colidir();
+
+  elementoBola.style.top = `${posicaoBolaY}px`;
+  elementoBola.style.left = `${posicaoBolaX}px`;
+}
+function colidir () {
+  if (posicaoBolaX <= 0 || posicaoBolaX + comprimentoDaBola >= larguraDaCaixa) {
+    velocidadeBolaX = -velocidadeBolaX; // Inverte a direção horizontal
+  }
+
+  if (posicaoBolaY <= 0 || posicaoBolaY + comprimentoDaBola >= alturaDaCaixa) {
+    velocidadeBolaY = -velocidadeBolaY; // Inverte a direção vertical
+  }
+}
+
+function depurar() {
+  console.log(`Largura da Tela: ${larguraDaTela}px \nAltura da Tela: ${alturaDaTela}px`);
+  console.log(`Largura da Caixa: ${larguraDaCaixa}px \nAltura da Caixa: ${alturaDaCaixa}px`);
+  console.log(`Comprimento da Bola: ${comprimentoDaBola}px`);
+}
+
+function inicializar() {
+
+  dimensionar();
+  estilizar();
+  posicionar();
+  movimentar();
+  depurar();
+
+  setInterval(atualizar, 16);
+
+}
+
+inicializar();

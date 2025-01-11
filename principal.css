@@ -72,12 +72,12 @@ p {
   font-size: 1rem;
 }
 .caixa {
-  border: 1px solid #fff;
-  /*width: clamp(350px, 25vw, 400px);
-  height: clamp(20px, 4vh, 60px);*/
+  border: 1px solid #fff !important;
+  position: relative;
 }
 .bola {
   background-color: #fff;
   border-radius: 50%;
   border: 1px solid ghostwhite;
+  position: absolute;
 }
